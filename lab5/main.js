@@ -18,7 +18,7 @@ Promise.resolve()
     .then(()=>IOhandler.unzip(zipFilePath, pathUnzipped))
     .then(() => console.log('Extraction operation complete'))
     .then(()=> IOhandler.readDir(pathUnzipped))
-    .then((files) => files.forEach(file => IOhandler.grayScale(path.join(pathUnzipped,file), path.join(pathProcessed,file))))
+    .then((files) => files.forEach(file => IOhandler.grayScale(path.join(__dirname,file), path.join(pathProcessed,path.basename(file)))))
     .then(() => console.log('Grayscale operation complete'))
     .catch((err) => console.log(err))
 
