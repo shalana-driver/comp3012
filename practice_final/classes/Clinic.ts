@@ -1,19 +1,23 @@
-import { WaitlistQueue } from "./WaitlistQueue"
+import { IBuilding } from "../interfaces/IBuilding"
+import { City } from "./City"
+import { WaitListQueue } from "./WaitListQueue"
 
-export class Clinic {
-    city: string
+export class Clinic implements IBuilding {
+    city: City
+    name: string
     staff: number
-    block: number
-    queue: WaitlistQueue
+    blockNum: number
+    queue: WaitListQueue
 
-    constructor(city: string, staff: number, block: number, queue: WaitlistQueue) {
+    constructor(city: City, name: string, staff: number, blockNum: number) {
         this.city = city,
+        this.name = name,
         this.staff = staff,
-        this.block = block,
-        this.queue = queue
+        this.blockNum = blockNum
+        this.queue = new WaitListQueue()
     }
 
     getCurrentWaitTime() {
-        
+        return `${this.queue.size()*15} min`
     }
 }

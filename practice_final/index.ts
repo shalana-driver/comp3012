@@ -1,47 +1,23 @@
+import { ComplexReport } from './classes/ComplexReport';
 import { HealthMap } from './classes/HealthMap';
-import * as data from './data.json' //ignoring async for now
-let currentIntake = 50; //make global?
+import { ReportMaker } from './classes/ReportMaker';
+const fs = require("fs/promises");
+let currentIntake = 25;
 //ts-node index.ts
 
 async function main() {
-  const map = new HealthMap(data)
-  map.printMap();
-  console.log("---End of Map---")
-  map.registerForShots();
-//   const report = new ReportMaker(new ComplexReport(map));
-//   report.printDetails();
-  console.log("---End of Report---")
-  map.printMap();
-  console.log("---End of Map---")
+
+  const map = new HealthMap("data.json")
+
+  map.readMapData()
+    .then(() => map.printMap())
+    .then(() => console.log("---End of Map---"))
+    .then(() => map.registerForShots(currentIntake))
+    .then(() => (new ReportMaker (new ComplexReport(map)).printDetails()))
+    .then(() => console.log("---End of Report---"))
+    .then(() => map.printMap())
+    .then(() => console.log("---End of Map---"))
+    .catch((err) => console.log(err));
 }
 
 main();
-
-/*class Map {
-	private _mapData;
-    constructor(filename) {//don't need to use the constructor, can create method (ex. buildMap) and then call that method, or call function in constructor
-        FileSystem.readFile(filename,'utf8') //can't use readFileSync
-        .then(data => JSON.parse(data))
-        .then(dataAsObj => {
-            this._mapData = dataAsObj
-        })
-    }
-  // constructors, methods, etc
-  printMap() {
-
-  }
-}
-
-async function main() {
-  const map = new Map("data.json") //right now this will run before the data has been stored
-  map.printMap();
-  console.log("---End of Map---")
-  map.registerForShots();
-  const report = new ReportMaker(new ComplexReport(map));
-  report.printDetails();
-  console.log("---End of Report---")
-  map.printMap();
-  console.log("---End of Map---")
-}
-
-main();*/

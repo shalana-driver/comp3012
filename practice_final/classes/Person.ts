@@ -1,14 +1,18 @@
 export class Person {
     phn: string
-    name: string
-    vaccinated: boolean
+    fullName: string
+    isVaccinated: Boolean
     age: number
 
-    constructor(phn: string, name: string, vaccinated: boolean, age: number) {
+    constructor(phn: string, fullName: string, isVaccinated: boolean, age: number) {
         this.phn = phn
-        this.name = name
-        this.vaccinated = vaccinated
+        this.fullName = fullName
+        this.isVaccinated = isVaccinated
         this.age = age
+    }
+
+    vaccinatePerson() {
+        this.isVaccinated = true
     }
 
 }
