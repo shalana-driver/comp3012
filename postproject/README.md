@@ -65,9 +65,9 @@ In particular, this application will behave similar to the social network Reddit
 
 ✅ Users must be able to log in and log out.
 
-Users must be able to create posts and comment on posts.
+✅ Users must be able to create posts and comment on posts.
 
-Posts are placed into subgroups, simply by specifying a subgroup during post-creation.
+✅ Posts are placed into subgroups, simply by specifying a subgroup during post-creation.
 
 #### Routes Required
 
@@ -81,7 +81,7 @@ All GET routes, unless otherwise specified, should `res.render` a template. All 
   - `GET /` (redirects to /posts or /login)
     - shows a listing of the most recent 20 posts ✅
       - each entry has a link, which uses the title for its visible text ✅
-      - each entry also lists the user that created it
+      - each entry also lists the user that created it ✅
 - subs
 
   - `GET /subs/list`
@@ -93,27 +93,27 @@ All GET routes, unless otherwise specified, should `res.render` a template. All 
 
 - individual posts
   - `GET /posts/show/:postid`
-    - shows post title, post link, timestamp, and creator
-    - also has a list of _all comments_ related to this post
-      - each of these should show the comment description, creator, and timestamp
+    - shows post title, post link, timestamp, and creator ✅
+    - also has a list of _all comments_ related to this post ✅
+      - each of these should show the comment description, creator, and timestamp ✅
       - optionally, each comment could have a link to delete it
-    - if you're logged in, a form for commenting should show
+    - if you're logged in, a form for commenting should show ✅
   - `GET /posts/create`
-    - form for creating a new post
+    - form for creating a new post ✅
   - `POST /posts/create`
-    - processes the creation
-    - doesn't allow invalid creations, for example if there's no link and also no description
+    - processes the creation ✅
+    - doesn't allow invalid creations, for example if there's no link and also no description ✅
       - (no-link is okay if you want to do that, though)
-    - every post must have a "sub", but it can be any string, including any string not previously used
+    - every post must have a "sub", but it can be any string, including any string not previously used ✅
       - so if the sub already exists, connect this post to that sub
       - but if the sub doesn't already exist, make a new sub!
-    - when finished redirects to the post just created
+    - when finished redirects to the post just created ✅
   - `GET /posts/edit/:postid`
-    - form for editing an existing post
-    - please think for a moment about which parts of a post should be editable, and which should not
-    - Shouldn't load unless you're logged in _as the correct user_
+    - form for editing an existing post ✅
+    - please think for a moment about which parts of a post should be editable, and which should not ✅
+    - Shouldn't load unless you're logged in _as the correct user_ ✅
   - `POST /posts/edit/:postid`
-    - redirect back to the post when done
+    - redirect back to the post when done ✅
   - `GET /posts/deleteconfirm/:postid`
     - form for confirming delete of an existing post
     - shouldn't load unless you're logged in _as the correct user_
@@ -121,7 +121,7 @@ All GET routes, unless otherwise specified, should `res.render` a template. All 
     - if cancelled, redirect back to the post
     - if successful, redirect back to the _sub that the post belonged to_
   - `POST /posts/comment-create/:postid`
-    - remember how `GET /posts/show/:postid` has a form for comments? It submits to here.
+    - remember how `GET /posts/show/:postid` has a form for comments? It submits to here. ✅
 - comments - these routes are _all optional_ at the PASS level, but I personally would find it useful to make them
   - `GET /comments/show/:commentid`
     - shows just a single comment with all its data and any links that are useful
@@ -137,7 +137,7 @@ I expect your variable names to be vaguely reasonable. An example of unreasonabl
 
 #### Ordering
 
-At this level, every time there is a listing of posts or comments, they should be sorted by timestamp, with the most recent post/comment at the top.
+At this level, every time there is a listing of posts or comments, they should be sorted by timestamp, with the most recent post/comment at the top. ✅
 
 #### Header required
 

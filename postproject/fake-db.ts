@@ -110,6 +110,15 @@ function getPosts(n = 5, sub = undefined) {
   return allPosts.slice(0, n);
 }
 
+function getPosts(n = 5, sub = undefined) {
+  let allPosts = Object.values(posts);
+  if (sub) {
+    allPosts = allPosts.filter((post) => post.subgroup === sub);
+  }
+  allPosts.sort((a, b) => b.timestamp - a.timestamp);
+  return allPosts.slice(0, n);
+}
+
 function getPost(id) {
   return decoratePost(posts[id]);
 }
@@ -143,6 +152,7 @@ function editPost(post_id, changes = {}) {
   if (changes.subgroup) {
     post.subgroup = changes.subgroup;
   }
+  return post
 }
 
 function deletePost(post_id) {

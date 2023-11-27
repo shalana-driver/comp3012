@@ -11,6 +11,7 @@
     <link href="/css/style.css" rel="stylesheet" />
     <title>Post</title>
   </head>
+  <%- include('./header.ejs') %>
   <body>
     <main>
       <div class="authOptions">
@@ -18,7 +19,51 @@
         <a role="button" href="/posts">Home</a>
       </div>
       <div>
-        <p>Implement this page yourself. It is from individualPost.ejs</p>
+        <!-- <p>Implement this page yourself. It is from individualPost.ejs</p> -->
+        <p><%= post.title %></p>
+        <p><a href="<%= post.link %>"><%= post.link %></a></p>
+        <p>
+            <% const timestamp = post.timestamp;
+              const date = new Date(timestamp);
+              const year = date.getFullYear();
+              const month = date.toLocaleString('en-US', {month: 'short'});
+              const day = date.getDate();
+              %>
+              <%=`${month}. ${day}, ${year}`%></p>
+        <p><%= post.creator.uname %></p>
+        <% if (user && user.uname === post.creator.uname) { %>
+        <p><a role="button" href="/posts/edit/<%=post.id%>">Edit Post</a></p>
+        
+        <% } %>
+        <b style="font-size:12px">Comments:</b>
+        <%const sortedComments = post.comments.sort((a, b) => b.timestamp - a.timestamp)%>
+        <p ><% sortedComments.forEach(comment => { %></p>
+          <div >
+            <p style="font-size:12px"><%=comment.creator.uname%>: <%=comment.description%></p>
+            <p style="font-size:12px"></p>
+            <p style="font-size:8px"><%
+              const timestamp = comment.timestamp;
+              const date = new Date(timestamp);
+              const year = date.getFullYear();
+              const month = date.toLocaleString('en-US', {month: 'short'});
+              const day = date.getDate();
+              %>
+              <%=`${month}. ${day}, ${year}`%>
+            </p>
+          </div>
+          <p><% }) %></p>
+          <% if (user) { %>
+          <p style="font-size:12px">
+            <form action="/posts/comment-create/<%=post.id%>" method="post" >
+              <input type="text" name="description" id="description" placeholder="New Comment" />
+              <button type="submit">Submit Comment</button>
+              
+            </form>
+          </p>
+          <% } %>
+      </div>
+      </div>
+      </div>
       </div>
     </main>
   </body>

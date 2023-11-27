@@ -1,8 +1,9 @@
 import express from "express";
 import session from "express-session";
 import passport from "./middleware/passport";
+import { getUser } from "./fake-db";
+import path from "path";
 const PORT = process.env.PORT || 8000;
-//focus on create post and view post
 //npm run dev
 const app = express();
 
@@ -21,11 +22,12 @@ app.use(
     },
   })
 );
-
+app.locals.getUser = getUser;
 import indexRoute from "./routers/indexRoute";
 import authRoute from "./routers/authRoute";
 import postsRoute from "./routers/postRouters";
 import subsRouters from "./routers/subsRouters";
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,7 +12,9 @@
     <link href="/css/style.css" rel="stylesheet" />
     <title>Homepage</title>
   </head>
+  <%- include('./header.ejs') %>
   <body>
+    
     <main>
       <div class="authOptions">
         <h1>Homepage</h1>
@@ -28,20 +31,25 @@
         <div class="individualPost">
           <a href="/posts/show/<%=post.id%>"><%= post.title %></a>
           <p><%= post.description %></p>
+          <p><%=getUser(post.creator).uname%></p>
         </div>
         <% }) %>
       </div>
-
       <div>
-        <a href="/subs/list">Subgroups</a>
+        <% if (user) { %>
+          <a role="button" href="/posts/create">Create Post</a>
+        <% } %> 
       </div>
-
       <div>
-        <a role="button" href="/posts/create">Create Post</a>
+
       </div>
+      <div>
+        <p><a href="/subs/list">Subgroups</a></p>  
+      </div>
+      
       <p style="color: rgb(197, 172, 172)">
-        😦 Heads up...you probably want to hide the Create Post button above for
-        non-logged-in users!
+        <!-- 😦 Heads up...you probably want to hide the Create Post button above for
+        non-logged-in users! -->
       </p>
     </main>
   </body>

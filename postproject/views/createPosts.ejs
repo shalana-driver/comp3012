@@ -11,6 +11,7 @@
     <link href="/css/style.css" rel="stylesheet" />
     <title>CreatePost</title>
   </head>
+  <%- include('./header.ejs') %>
   <body>
     <main>
       <div class="authOptions">
@@ -18,7 +19,10 @@
         <a role="button" href="/posts">Home</a>
       </div>
       <form action="/posts/create" method="post">
-        <input type="text" name="title" >
+        <input type="text" name="title" id="title" placeholder="Title" required/>
+        <input type="text" name="link" id="link" placeholder="Link" required/>
+        <input type="text" name="description" id="description" placeholder="Description" required/>
+        <input type="text" name="subgroup" id="subgroup" placeholder="Subgroup" required/>
         <button type="submit">Create Post</button>
       </form>
     </main>

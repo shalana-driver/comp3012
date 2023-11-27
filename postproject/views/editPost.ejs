@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.classless.min.css"
+    />
+    <link href="/css/style.css" rel="stylesheet" />
+    <title>CreatePost</title>
+  </head>
+  <%- include('./header.ejs') %>
+  <body>
+    <main>
+      <div class="authOptions">
+        <h1>Edit Post</h1>
+        <a role="button" href="/posts">Home</a>
+      </div>
+      <form action="/posts/edit/<%=post.id%>" method="post">
+        <!-- <input type="text" name="title" id="title" placeholder="Title" /> -->
+        <input type="text" name="link" id="link" placeholder="Link" />
+        <input type="text" name="description" id="description" placeholder="Description" />
+        <!-- <input type="text" name="subgroup" id="subgroup" placeholder="Subgroup" /> -->
+        <button type="submit">Submit Edits</button>
+      </form>
+    </main>
+  </body>
+</html>
